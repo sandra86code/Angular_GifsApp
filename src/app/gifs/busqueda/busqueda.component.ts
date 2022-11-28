@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GifsService } from '../services/gifs.service';
 
 @Component({
@@ -14,9 +14,11 @@ export class BusquedaComponent implements OnInit {
 
   query: string = "";
 
-  buscarGifs() {
-    console.log(this.query);
-    this.gifsService.buscarGifs(this.query);
-    this.query="";
+  searchGifs() {
+    let clean = this.query.trim().toLocaleLowerCase();
+    if(clean!='') {
+      this.gifsService.searchGifs(clean);
+      this.query="";
+    }
   }
 }
